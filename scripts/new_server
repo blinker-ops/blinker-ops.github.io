@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo "Setting up new server"
+echo "Run me like this:  curl -sSL https://ops.blinker.com/scripts/new_server | sudo sh"
+
+sudo apt-get update
