@@ -1,6 +1,12 @@
 #!/bin/bash
 
 echo "Setting up new server"
-echo "Run me like this:  curl -sSL https://ops.blinker.com/scripts/new_server | sudo sh"
+echo "Run me like this:  curl -sSL http://blinker-ops.github.io/scripts/new_server | sudo sh"
 
+# Set up Docker
 sudo apt-get update
+sudo apt-get install -y docker.io
+[ -e /usr/lib/apt/methods/https ] || {   apt-get update;   apt-get install apt-transport-https; }
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
+curl -sSL https://get.docker.com/ubuntu/ | sudo sh
+
