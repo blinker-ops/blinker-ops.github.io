@@ -10,3 +10,6 @@ sudo apt-get install -y docker.io
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
 curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 
+echo "Login to docker hub.  Enter password on prompt."
+sudo docker login --email=david@blinker.com --username=blinker
+
