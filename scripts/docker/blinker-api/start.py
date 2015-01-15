@@ -60,3 +60,4 @@ cmd="sudo docker run -d --name %s --volumes-from %s %s %s -e RAILS_ENV=%s %s:%s 
 print "Running %s" % cmd
 os.system(cmd)
 
+os.system("sudo docker ps -a")
