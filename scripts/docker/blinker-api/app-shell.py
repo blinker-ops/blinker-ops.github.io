@@ -28,7 +28,7 @@ if input == 'n':
     print "Aborted."
     sys.exit()
 
-cmd = 'sudo docker run -t -i --rm -e RAIL_ENV=%s --volumes-from %s --name shell-%s %s:%s /bin/bash' % (rails_env, data_container_name, executable_container_name, docker_repo, tag)
+cmd = 'sudo docker run -t -i --rm -e RAILS_ENV=%s --volumes-from %s --name shell-%s %s:%s /bin/bash' % (rails_env, data_container_name, executable_container_name, docker_repo, tag)
 
 print "Running '%s'" % cmd
 os.system(cmd)
