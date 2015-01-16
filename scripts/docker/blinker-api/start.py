@@ -5,20 +5,13 @@ import sys, os
 target="blinker-api"
 docker_repo="blinker/blinker-api"
 rails_env="staging"
-environments = ("staging", "production")
-
-print "***** This will try to bind at host port 3000.  If there's already a container running. Stop it first with the stop script. *****"
-input = raw_input("Continue? [Y/n]: ")
-if input == "n" or (input != "" and input !="Y"):
-    print "Done."
-    sys.exit()
-
+environments = ("development", "integration", "staging", "production")
 
 tag=raw_input("Enter tag for docker hub repo %s? " % docker_repo)
 
 input=raw_input("RAILS_ENV=(%s)? [%s]: " % ('|'.join(environments), rails_env))
 if input != "":
-    if input in ("staging", "production"):
+    if input in environments:
         rails_env = input
     else:
         print "Environment must be (%s)" % '| '.join(environments)
@@ -32,7 +25,7 @@ data_container_name='%s-data' % executable_container_name
 data_container_command="echo %s/%s" % (rails_env, data_container_name)
 
 executable_container_command="bundle exec unicorn -p 3000 -c ./config/unicorn.rb --no-default-middleware"
-docker_ports_options="-p 3000:3000"
+docker_ports_options="-P"
 docker_ntp_options="-v /etc/localtime:/etc/localtime:ro"
 
 input=raw_input("Launch blinker-api mounting file system on a data-only container in %s/%s, from %s:%s. Continue [Y/n]? " % (rails_env, target, docker_repo, tag))
