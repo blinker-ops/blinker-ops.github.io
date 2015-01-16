@@ -5,13 +5,13 @@ import sys, os, datetime
 target="blinker-api"
 docker_repo="blinker/blinker-api"
 rails_env="staging"
-environments = ("staging", "production")
+environments = ("development", "integration", "staging", "production")
 
 tag=raw_input("Enter tag for docker hub repo %s? " % docker_repo)
 
 input=raw_input("RAILS_ENV=(%s)? [%s]: " % ('|'.join(environments), rails_env))
 if input != "":
-    if input in ("staging", "production"):
+    if input in environments:
         rails_env = input
     else:
         print "Environment must be (%s)" % '| '.join(environments)
