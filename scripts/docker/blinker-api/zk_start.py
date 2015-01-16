@@ -20,10 +20,10 @@ else:
     input = "staging"
     
 
-executable_container_name='%s-%s' % (target, tag)
-data_container_name='%s-data' % executable_container_name
-data_container_command="echo %s/%s" % (rails_env, data_container_name)
+executable_container_name='zk-%s-%s' % (target, tag)
+data_container_name='zk-%s-data' % executable_container_name
 
+data_container_command="echo %s/%s" % (rails_env, data_container_name)
 executable_container_command="zkstart -root=/environments/integration -stdout -newline bundle exec unicorn -p 3000 -c ./config/unicorn.rb --no-default-middleware"
 docker_ports_options="-P"
 docker_ntp_options="-v /etc/localtime:/etc/localtime:ro"
